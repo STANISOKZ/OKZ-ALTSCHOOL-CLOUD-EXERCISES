@@ -1,1 +1,1 @@
-Modification of vagrantfile to dhcp and ifcongig file
+Modification of vagrantfile to dhcp and ifconfig file
