@@ -1,3 +1,0 @@
-clientone ansible_host=54.226.236.255
-
-ansible_connection=ssh ansible_user=ansibleserver

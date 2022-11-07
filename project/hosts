@@ -1,6 +1,6 @@
-[dev]
+[development]
 ansibleserver
 
-[deploy]
+[deployment]
 clientone
 
