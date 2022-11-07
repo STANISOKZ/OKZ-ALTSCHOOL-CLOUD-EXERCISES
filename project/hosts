@@ -1,0 +1,6 @@
+[dev]
+ansibleserver
+
+[deploy]
+clientone
+

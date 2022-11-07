@@ -1,8 +1,0 @@
-mysql_root_password: "gunners"
-mysql_databases:
-  - name: laravelDB
-mysql_users:
-  - name: master
-    host: "%"
-    password: gunners
-    priv: "laravel.*:ALL"
