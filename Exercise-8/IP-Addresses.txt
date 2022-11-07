@@ -1,8 +1,8 @@
-## **IP/Subneting**
+## **Simple IP/Subneting**
 
 **Question**
 
-**193.16.20.35/29**
+**Given an IP 193.16.20.35/29**
 
 What is the Network IP, number of hosts, range of IP addresses and broadcast IP from this subnet?
 
