@@ -30,9 +30,3 @@
   command: "/usr/bin/php {{ remote_www_root }}/{{ app_root_dir }}/artisan migrate:refresh --force"
   tags: [ 'laravel', 'artisan:migrate' ]
 
-#- name: Run Migrations + Seeders
- # command: "/usr/bin/php {{ remote_www_root }}/{{ app_root_dir }}/artisan migrate --class=CustomSeeder --force"
-#  command: "/usr/bin/php {{ remote_www_root }}/{{ app_root_dir }}/artisan migrate --seed"
- # tags: [ 'laravel', 'artisan:migrate' ]
-
-
