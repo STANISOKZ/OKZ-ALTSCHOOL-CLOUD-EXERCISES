@@ -30,3 +30,7 @@
   command: "/usr/bin/php {{ remote_www_root }}/{{ app_root_dir }}/artisan migrate:refresh --force"
   tags: [ 'laravel', 'artisan:migrate' ]
 
+- name: Enable new site
+  file:
+    src: "/etc/apache2/sites-available/laravel.conf"
+    dest: "/etc/apache2/sites-enabled/laravel.conf"
