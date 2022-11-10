@@ -14,7 +14,7 @@
   command: "/usr/bin/php {{ remote_www_root }}/{{ app_root_dir }}/artisan key:generate"
   tags: [ 'laravel', 'artisan:key' ]
 
-- name: Set up app storage link
+- name: Set up app storage link at slave
   command: "/usr/bin/php {{ remote_www_root }}/{{ app_root_dir }}/artisan storage:link"
   tags: [ 'laravel', 'artisan:storage' ]
 

@@ -1,5 +1,5 @@
 
-- name: deploy our app
+- name: Deployment of Laravel app
   become: true
   hosts: ubuntu
   vars_files:
@@ -11,5 +11,5 @@
     - composer
     - mysql
     - pgsql
-    - deploy
+    - push
     
