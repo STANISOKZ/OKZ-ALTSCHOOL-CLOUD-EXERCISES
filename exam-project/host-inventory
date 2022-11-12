@@ -1,0 +1,5 @@
+[linux]
+18.205.19.79
+
+[linux:vars]
+ansible_user=ubuntu

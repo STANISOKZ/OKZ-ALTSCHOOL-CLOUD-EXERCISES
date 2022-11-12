@@ -1,0 +1,72 @@
+---
+  - name: deploy laravel application on ubuntu
+    hosts: all
+    become: true
+    tasks:
+      - name: copy files
+        ansible.builtin.copy:
+          src: /home/ubuntu/pgsql.sh
+          dest: /home/ubuntu
+          mode: 777
+      - name: execute script
+        command: /home/ubuntu/pgsql.sh
+
+      - name: move composer
+        command: mv /home/ubuntu/composer.phar /usr/local/bin/composer
+      
+      - name: change permission
+        command: chmod +x /usr/local/bin/composer
+
+      - name: install git
+        apt:
+          name: git
+          state: present
+      - name: deploy app from master
+        ansible.builtin.copy:
+          src: /home/ubuntu/demo.conf
+          dest: /etc/apache2/sites-available
+      - name: check for existing repo
+        ansible.builtin.stat:
+          path: /var/www/laravelapp
+        register: checked
+      - name: clone 
+        ansible.builtin.git:
+          repo: https://github.com/thereson/laravel-realworld-example-app.git
+          dest: /var/www/laravelapp
+
+      - name: connect to mysql
+        ansible.builtin.copy:
+          src: /home/ubuntu/mysql.sh
+          dest: /home/ubuntu
+      - name: enable site
+        command: a2ensite demo.conf
+
+      - name: restart apache2
+        command: systemctl reload apache2
+
+
+      - name: set storage permision
+        command: "{{ item }}"
+        with_items:
+          - chown -R :www-data /var/www/laravelapp
+          - chmod -R 775 /var/www/laravelapp
+          - chmod -R 775 /var/www/laravelapp/storage
+
+      - name: run composer
+        composer:
+          command: install
+          working_dir: /var/www/laravelapp
+        environment:
+          COMPOSER_ALLOW_SUPERUSER: "1"
+          COMPOSER_NO_INTERACTION: "1"
+
+      - name: generate app keys
+        composer:
+          command: create-project
+          working_dir: /var/www/laravelapp
+        environment:
+          COMPOSER_ALLOW_SUPERUSER: "1"
+          COMPOSER_NO_INTERACTION: "1"
+        
+
+
