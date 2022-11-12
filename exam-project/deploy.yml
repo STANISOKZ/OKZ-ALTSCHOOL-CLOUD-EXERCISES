@@ -37,7 +37,7 @@
         ansible.builtin.git:
           repo: https://github.com/thereson/laravel-realworld-example-app.git
           dest: /var/www/laravelapp
-#        when: checked.stat.exists == "False"
+        when: checked.stat.exists == "False"
 
       - name: connect to mysql
         ansible.builtin.copy:
@@ -60,7 +60,7 @@
 
       - name: run composer
         composer:
-          command: install
+          command: update
           working_dir: /var/www/laravelapp
         environment:
           COMPOSER_ALLOW_SUPERUSER: "1"
@@ -73,6 +73,7 @@
         environment:
           COMPOSER_ALLOW_SUPERUSER: "1"
           COMPOSER_NO_INTERACTION: "1"
-        
+       
+      - 
 
 
