@@ -5,11 +5,12 @@
     tasks:
       - name: copy files
         ansible.builtin.copy:
-          src: /home/ubuntu/pgsql.sh
+          src:  /home/ubuntu/dir/OKZ-ALTSCHOOL-CLOUD-EXERCISES/exam-project/bash.sh
           dest: /home/ubuntu
           mode: 777
+
       - name: execute script
-        command: /home/ubuntu/pgsql.sh
+        command: /home/ubuntu/bash.sh
 
       - name: move composer
         command: mv /home/ubuntu/composer.phar /usr/local/bin/composer
@@ -21,23 +22,28 @@
         apt:
           name: git
           state: present
+
       - name: deploy app from master
         ansible.builtin.copy:
-          src: /home/ubuntu/demo.conf
+          src: /home/ubuntu/dir/OKZ-ALTSCHOOL-CLOUD-EXERCISES/exam-project/demo.conf
           dest: /etc/apache2/sites-available
+
       - name: check for existing repo
         ansible.builtin.stat:
           path: /var/www/laravelapp
         register: checked
-      - name: clone 
+
+      - name: clone our github repo
         ansible.builtin.git:
           repo: https://github.com/thereson/laravel-realworld-example-app.git
           dest: /var/www/laravelapp
+#        when: checked.stat.exists == "False"
 
       - name: connect to mysql
         ansible.builtin.copy:
-          src: /home/ubuntu/mysql.sh
+          src: /home/ubuntu/dir/OKZ-ALTSCHOOL-CLOUD-EXERCISES/exam-project/mysql.sh
           dest: /home/ubuntu
+
       - name: enable site
         command: a2ensite demo.conf
 

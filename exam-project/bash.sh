@@ -1,11 +1,11 @@
 #!/bin/bash
 
-sudo apt update
+sudo apt update -y
 sudo apt install apache2
 sudo apt install -y lsb-release ca-certificates apt-transport-https software-properties-common gnupg2
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/sury-php.list
-curl -fsSL  https://packages.sury.org/php/apt.gpg| sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/sury-keyring.gpg
-sudo apt update
+curl -fsSL  https://packages.sury.org/php/apt.gpg| sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/sury-keyring.gpg -y
+sudo apt update -y
 sudo apt install php8.1 -y
 sudo apt install php8.1-{bcmath,fpm,xml,mysql,zip,intl,ldap,gd,cli,bz2,curl,mbstring,pgsql,opcache,soap,cgi} -y
 
